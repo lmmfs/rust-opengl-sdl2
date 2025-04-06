@@ -78,24 +78,6 @@ engine/
 │   │   ├── audio_manager.rs
 │   │   ├── sound.rs
 │   │   └── sound_source.rs
-│   ├── game/            # Placeholder for game-specific logic (can be moved to a separate crate later)
-│   │   ├── mod.rs
-│   │   ├── components/
-│   │   │   ├── mod.rs
-│   │   │   ├── transform.rs   # Game-specific transform (can extend core)
-│   │   │   ├── player.rs
-│   │   │   ├── health.rs
-│   │   │   ├── weapon.rs
-│   │   │   └── ai.rs
-│   │   ├── systems/
-│   │   │   ├── mod.rs
-│   │   │   ├── player_movement.rs
-│   │   │   ├── combat.rs
-│   │   │   ├── ai_system.rs
-│   │   │   └── rendering_system.rs # ECS system for rendering
-│   │   └── resources/
-│   │       ├── mod.rs
-│   │       └── game_settings.rs
 │   └── utils/          # General utility modules
 │       ├── mod.rs
 │       └── macros.rs

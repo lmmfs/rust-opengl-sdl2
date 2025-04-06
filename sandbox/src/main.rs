@@ -9,7 +9,8 @@ use ubi::graphics::objects::*;
 use ubi::core::custom_error::UbiError;
 */
 
-use ubi::prelude::*;
+use ubi::{graphics::window::window_trait::Window, prelude::*};
+use ubi::graphics::window::window_trait::WindowData;
 
 fn main() {
     ubi::core::logger::init();
@@ -18,7 +19,6 @@ fn main() {
 }
 
 fn test_error() -> Result<(), UbiError> {
-    ubi::core::logger::info!("Error");
     appinfo!("rrrrr");
     apperror!("rrrrr");
     return Err(UbiError::Other(String::from("eeeee")))
@@ -26,7 +26,12 @@ fn test_error() -> Result<(), UbiError> {
 
 
 fn engine_loop() {
-    let mut windsdl = Windsdl::new(800, 600).unwrap();
+    let window_data = WindowData {
+        name: "rusty",
+        width: 800,
+        height: 600,
+    };
+    let mut windsdl = Windsdl::create(window_data).unwrap();
     unsafe { gl::Viewport(0, 0, 800, 600) }
     
     let program = create_program().unwrap();
@@ -36,7 +41,6 @@ fn engine_loop() {
     
     let vbo = Vbo::gen();
     vbo.set(&vertices);
-    
     
     let vao = Vao::gen();
     vao.set();
@@ -111,8 +115,7 @@ fn engine_loop() {
                 0 as *const _
             );
         }
-        
-        windsdl.window.gl_swap_window();
+        windsdl.swap_buffers();
     }
 }
 
